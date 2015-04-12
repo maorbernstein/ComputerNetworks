@@ -34,7 +34,9 @@ def LCD_Write(string, blink_cursor=False):
 		lcd.blink(True)
 
 if __name__ == "__main__":
-	LCD_Write("Pants\nAre Cool\nOh Yeah!")
+	LCD_Write("Pants Are Cool!", True)
+	time.sleep(10)
+	lcd.clear()
 
 
 
