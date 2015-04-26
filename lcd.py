@@ -4,26 +4,23 @@ import math
 import time
 
 import Adafruit_CharLCD as LCD
-
+# Raspberry Pi pin configuration:
+lcd_rs        = 27  # Note this might need to be changed to 21 for older revision Pi's.
+lcd_en        = 22
+lcd_d4        = 25
+lcd_d5        = 24
+lcd_d6        = 13
+lcd_d7        = 19
+lcd_backlight = 4
+# Define LCD column and row size for 16x2 LCD.
+lcd_columns = 20
+lcd_rows    = 4
+#Initialize the LCD using the pins above.
+lcd = LCD.Adafruit_CharLCD(lcd_rs, lcd_en, lcd_d4, lcd_d5, lcd_d6, lcd_d7, lcd_columns, lcd_rows, lcd_backlight)
 
 
 def LCD_Write(string, blink_cursor=False):
-	# Raspberry Pi pin configuration:
-	lcd_rs        = 27  # Note this might need to be changed to 21 for older revision Pi's.
-	lcd_en        = 22
-	lcd_d4        = 25
-	lcd_d5        = 24
-	lcd_d6        = 23
-	lcd_d7        = 18
-	lcd_backlight = 4
 
-
-	# Define LCD column and row size for 16x2 LCD.
-	lcd_columns = 16
-	lcd_rows    = 2
-
-	# Initialize the LCD using the pins above.
-	lcd = LCD.Adafruit_CharLCD(lcd_rs, lcd_en, lcd_d4, lcd_d5, lcd_d6, lcd_d7, lcd_columns, lcd_rows, lcd_backlight)
 	#Clear the LCD
 	lcd.clear()
 	lcd.show_cursor(False)
@@ -33,11 +30,11 @@ def LCD_Write(string, blink_cursor=False):
 	if blink_cursor:
 		lcd.blink(True)
 
-	time.sleep(10)
+def kill():
 	lcd.clear()
 
 if __name__ == "__main__":
-	LCD_Write("Pants Are Cool!", True)
+	LCD_Write("Pants Are Cool!\n No they're not!\n Yes they are\nFuck", False)
 
 
 
